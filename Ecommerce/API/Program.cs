@@ -7,62 +7,22 @@
 //2 - Entrar na pasta da solução
 //3 - Criar o projeto
 //4 - Vincular o projeto para a solução
-Console.Clear();
+// Console.Clear();
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 List<Produto> produtos = new List<Produto>();
-// {
-//     new Produto
-//     {
-//         Nome = "Notebook Pro 15"
-//     },
-//     new Produto
-//     {
-//         Nome = "Mouse Wireless"
-//     },
-//     new Produto
-//     {
-//         Nome = "Teclado Mecânico RGB"
-//     },
-//     new Produto
-//     {
-//         Nome = "Monitor 27 Full HD"
-//     },
-//     new Produto
-//     {
-//         Nome = "Headset Gamer"
-//     },
-//     new Produto
-//     {
-//         Nome = "Webcam Full HD"
-//     },
-//     new Produto
-//     {
-//         Nome = "SSD 1TB NVMe"
-//     },
-//     new Produto
-//     {
-//         Nome = "Cadeira Gamer"
-//     },
-//     new Produto
-//     {
-//         Nome = "Smartphone Max 256GB"
-//     },
-//     new Produto
-//     {
-//         Nome = "Tablet 10 Polegadas"
-//     }
-// };
 
-//FUNCIONALIDADES - EndPoint
+//FUNCIONALIDADES - EndPoints
 //Requisições
 // - Método HTTP
 // - URL
+// - Opcional - Corpo/Parâmetros de URL
 
 //Resposta
-// - Dado/Informação
+// - Dado/Informação/Mensagem
+// - Código de Status HTTP
 
 //GET: http://localhost:5195/
 app.MapGet("/", () => "API do Ecommerce");
@@ -70,21 +30,54 @@ app.MapGet("/", () => "API do Ecommerce");
 //GET: /api/produto/listar
 app.MapGet("/api/produto/listar", () =>
 {
-    return produtos;
+    if (produtos.Count == 0)
+    {
+        return Results.BadRequest("A lista de produtos está vazia");
+    }
+    return Results.Ok(produtos);
 });
 
 //POST: /api/produto/cadastrar
-app.MapPost("/api/produto/cadastrar", 
-    (Produto produto) =>
-{    
+app.MapPost("/api/produto/cadastrar", (Produto? produto) =>
+{
+
+    if (produto is null)
+    {
+        return Results.BadRequest("O produto não pode ser nulo");
+    }
+
+    if (produto.Nome == "")
+    {
+        return Results.BadRequest("O nome não pode ser vazio");
+    }
+
+    foreach (Produto produtoCadastrado in produtos)
+    {
+        if (produtoCadastrado.Nome == produto.Nome)
+        {
+            return Results.BadRequest("Já existe um produto com o mesmo nome");
+        }
+    }
     produtos.Add(produto);
     return Results.Created("", produto);
+});
+
+//GET: /api/produto/buscar/nomDe_produto
+app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
+{
+    foreach (Produto produtoCadastrado in produtos)
+    {
+        if (produtoCadastrado.Nome == nome)
+        {
+            return Results.Ok(produtoCadastrado);
+        }
+    }
+    return Results.NotFound("Produto não encontrado!");
 });
 
 app.Run();
 
 //EXERCÍCIO
-// 1 - Pesquisar produto por nome
 // 2 - Remoção de um produto
 // 3 - Alteração de produto
 
