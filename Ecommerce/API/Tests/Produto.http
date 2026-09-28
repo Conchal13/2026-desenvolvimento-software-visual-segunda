@@ -1,12 +1,14 @@
+### POSTMAN ou INSOMNIA
 ### Instalar a extensão REST CLIENT
 ### Criar um arquivo .http
 
 ### Raiz do Projeto
 GET http://localhost:5195
 
-### Segunda Requisição
-GET http://localhost:5195/segundafuncionalidade
+### Listar Produtos
+GET http://localhost:5195/api/produto/listar
 
+<<<<<<< HEAD
 ### Requisição com o método POST
 POST http://localhost:5195/segundafuncionalidade
 
@@ -14,10 +16,17 @@ POST http://localhost:5195/segundafuncionalidade
 GET http://localhost:5195/api/produto/listar
 
 ### Requisição cadastrar
+=======
+### Buscar produto por nome
+GET http://localhost:5195/api/produto/buscar/Mouse
+
+### Cadastrar Produto
+>>>>>>> 80bfa2a8c3e15057f03b81843abb55c5f285813e
 POST http://localhost:5195/api/produto/cadastrar
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
    "Nome" : "mouse"
 }
 
@@ -25,3 +34,7 @@ Content-Type: application/json
 GET http://localhost:5195/api/produto/buscar/mouse
 
 
+=======
+    "nome" : "Teclado"
+}
+>>>>>>> 80bfa2a8c3e15057f03b81843abb55c5f285813e

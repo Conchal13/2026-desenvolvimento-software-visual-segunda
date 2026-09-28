@@ -123,6 +123,9 @@ app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
 
 app.Run();
 
+//EXERCÍCIO
+// 2 - Remoção de um produto
+// 3 - Alteração de produto
 
 // EXERCICIO
 // 1 PESQUISA POR NOME
