@@ -18,3 +18,14 @@ Content-Type: application/json
 {
     "nome" : "Teclado"
 }
+
+### Remover produto por id
+DELETE http://localhost:5195/api/produto/remover/c1c39ad4-4325-433e-ba8d-87957c6efea8
+
+### Alterar Produto
+PUT http://localhost:5195/api/produto/alterar/2e8878aa-1184-496b-8118-ce947b161666
+Content-Type: application/json
+
+{
+    "nome" : "Mouse"
+}
