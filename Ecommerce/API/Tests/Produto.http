@@ -19,6 +19,7 @@ POST http://localhost:5195/api/produto/cadastrar
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
    "Nome" : "galho"
 }
 
@@ -36,3 +37,18 @@ Content-Type: application/json
 {
     "nome": "sopanova"
 }
+=======
+    "nome" : "Teclado"
+}
+
+### Remover produto por id
+DELETE http://localhost:5195/api/produto/remover/c1c39ad4-4325-433e-ba8d-87957c6efea8
+
+### Alterar Produto
+PUT http://localhost:5195/api/produto/alterar/2e8878aa-1184-496b-8118-ce947b161666
+Content-Type: application/json
+
+{
+    "nome" : "Mouse"
+}
+>>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c

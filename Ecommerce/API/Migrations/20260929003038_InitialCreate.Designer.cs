@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,16 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20260929003038_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-<<<<<<< HEAD
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.30");
-=======
             modelBuilder.HasAnnotation("ProductVersion", "8.0.31");
->>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c
 
             modelBuilder.Entity("Produto", b =>
                 {
@@ -29,19 +28,12 @@ namespace API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-<<<<<<< HEAD
-=======
                         .IsRequired()
->>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.ToTable("Produtos_table");
-=======
                     b.ToTable("Produtos");
->>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c
                 });
 #pragma warning restore 612, 618
         }

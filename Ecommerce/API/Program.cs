@@ -11,6 +11,8 @@
 
 using Microsoft.AspNetCore.Mvc;
 
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -108,6 +110,7 @@ app.MapPost("/api/produto/cadastrar", (Produto? produto) =>
     produtos.Add(produto);
     return Results.Created("", produto);
 
+<<<<<<< HEAD
 
 });
 //GET: /api/produto/buscar/nome
@@ -135,11 +138,24 @@ app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
    }
    return Results.Ok(produtoEncontrado);
 
+=======
+//GET: /api/produto/buscar/nome_produto
+app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
+{
+    //Expressão lambda
+    Produto? produtoEncontrado = produtos.FirstOrDefault(x => x.Nome == nome);
+    if (produtoEncontrado is null)
+    {
+        return Results.NotFound("Produto não encontrado!");
+    }
+    return Results.Ok(produtoEncontrado);    
+>>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c
 });
 
 //DELETE: /api/produto/remover/id_produto
 app.MapDelete("/api/produto/remover/{id}", (string id) =>
 {
+<<<<<<< HEAD
     //expressão lambda
    Produto? produtoEncontrado = 
     produtos.FirstOrDefault(p => p.Id == id);
@@ -172,8 +188,41 @@ app.MapPut("/api/produto/alterar/{id}", ([FromRoute]string id, [FromBody] Produt
 
 
 
+=======
+    //Expressão lambda
+    Produto? produtoEncontrado = produtos.FirstOrDefault(x => x.Id == id);
+    if (produtoEncontrado is null)
+    {
+        return Results.NotFound("Produto não encontrado!");
+    }
+    produtos.Remove(produtoEncontrado);
+    return Results.Ok(produtoEncontrado);    
+});
+
+//DELETE: /api/produto/alterar/id_produto
+app.MapPut("/api/produto/alterar/{id}", 
+    ([FromRoute] string id, 
+    [FromBody] Produto produtoAlterado) =>
+{
+    //Expressão lambda
+    Produto? produtoEncontrado = produtos.FirstOrDefault(x => x.Id == id);
+    if (produtoEncontrado is null)
+    {
+        return Results.NotFound("Produto não encontrado!");
+    }
+    
+    produtoEncontrado.Nome = produtoAlterado.Nome;
+    return Results.Ok(produtoEncontrado);    
+});
+
+
+>>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c
 app.Run();
 
 //EXERCÍCIO
 // 2 - Remoção de um produto
 // 3 - Alteração de produto
+<<<<<<< HEAD
+=======
+
+>>>>>>> 855d846b1d7dfa82a3f1ec108090496ce2cdf60c
